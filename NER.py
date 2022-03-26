@@ -199,3 +199,22 @@ def train(loss_function, optimizer, model, loader, num_epochs=10000):
     
 num_epochs = 1000
 train(loss_function, optimizer, model, loader, num_epochs=num_epochs)
+
+# Create test sentences
+test_corpus = ["She comes from Paris"]
+test_sentences = [s.lower().split() for s in test_corpus]
+test_labels = [[0, 0, 0, 1]]
+
+# Create a test loader
+test_data = list(zip(test_sentences, test_labels))
+batch_size = 1
+shuffle = False
+window_size = 2
+collate_fn = partial(custom_collate_fn, window_size=2, word_to_ix=word_to_ix)
+test_loader = torch.utils.data.DataLoader(test_data, batch_size=1, shuffle=False, 
+                                          collate_fn=collate_fn)
+
+for test_instance, labels, _ in test_loader:
+  outputs = model.forward(test_instance)
+  print(labels)
+  print(outputs)
