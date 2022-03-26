@@ -143,7 +143,6 @@ loader = DataLoader(data, batch_size=batch_size, shuffle=shuffle, collate_fn=col
 # Initialize a model
 # It is useful to put all the model hyperparameters in a dictionary
 model_hyperparameters = {
-    "batch_size": 4,
     "window_size": 2,
     "embed_dim": 25,
     "hidden_dim": 25,
@@ -200,6 +199,3 @@ def train(loss_function, optimizer, model, loader, num_epochs=10000):
     
 num_epochs = 1000
 train(loss_function, optimizer, model, loader, num_epochs=num_epochs)
-
-
-

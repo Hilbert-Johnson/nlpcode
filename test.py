@@ -1,10 +1,10 @@
-def trace(fn):
-    def wrapped(x):
-        print('->',fn,'(',x,')')
-        return fn(x)
-    return wrapped
-@trace             # be similar to execute :  triple=trace(triple)
-def triple(x):
-    return 3*x
-print(triple)
-print(triple(12))
+import torch
+import torch.nn as nn
+embedding = nn.Embedding(10, 3)
+print(list(embedding.parameters()))
+input = torch.LongTensor([[1,2,4,5],[4,3,2,9]])
+print(embedding(input))
+embedding = nn.Embedding(10, 3, padding_idx=0)
+print(list(embedding.parameters()))
+input = torch.LongTensor([[0,2,0,5]])
+print(embedding(input))
